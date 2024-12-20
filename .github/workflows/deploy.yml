@@ -2,7 +2,7 @@ name: Deploy to GitHub Pages
 
 on:
   release:
-    types: [published]
+    types: [published]  # Действие запускается при публикации релиза
 
 jobs:
   deploy:
@@ -12,24 +12,10 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v3
 
-    - name: Change directory to 'website'
-      run: cd website
-
-    - name: Set up Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '16'
-
-    - name: Install dependencies
-      run: npm install
-
-    - name: Build the project
-      run: npm run build
-
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./dist
-        publish_branch: gh-pages
-        destination_dir: v${{ github.event.release.tag_name }}
+        publish_dir: ./  # Публикуем весь проект
+        publish_branch: gh-pages  # Деплой в ветку gh-pages
+        destination_dir: v${{ github.event.release.tag_name }}  # Публикуем в папку с названием релиза
