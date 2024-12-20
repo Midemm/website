@@ -12,6 +12,9 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v3
 
+    - name: Change directory to 'website'
+      run: cd website
+
     - name: Set up Node.js
       uses: actions/setup-node@v3
       with:
