@@ -19,5 +19,5 @@ jobs:
         publish_dir: ./  # Публикуем весь проект
         publish_branch: gh-pages  # Публикуем в ветку gh-pages
         destination_dir: v${{ github.event.release.tag_name }}  # Создаем папку для версии релиза
-        user_name: 'mMidemm'  # Имя пользователя для коммита
+        user_name: 'Midemm'  # Имя пользователя для коммита
         user_email: 'Kolesn2003@yandex.ru'  # Электронная почта для коммита
