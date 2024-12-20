@@ -1,0 +1,11 @@
+{
+  "name": "myproject",
+  "version": "1.0.0",
+  "description": "project",
+  "scripts": {
+    "build": "echo 'No build step, just deploy static files'"
+  },
+  "keywords": ["html", "website"],
+  "author": "",
+  "license": "ISC"
+}
