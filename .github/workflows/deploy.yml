@@ -2,7 +2,7 @@ name: Deploy to GitHub Pages
 
 on:
   release:
-    types: [published]  # Действие запускается при публикации релиза
+    types: [published]  # Workflow срабатывает при публикации релиза
 
 jobs:
   deploy:
@@ -15,7 +15,9 @@ jobs:
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
+        github_token: ${{ secrets.GITHUB_TOKEN }}  # Токен для аутентификации
         publish_dir: ./  # Публикуем весь проект
-        publish_branch: gh-pages  # Деплой в ветку gh-pages
-        destination_dir: v${{ github.event.release.tag_name }}  # Публикуем в папку с названием релиза
+        publish_branch: gh-pages  # Публикуем в ветку gh-pages
+        destination_dir: v${{ github.event.release.tag_name }}  # Создаем папку для версии релиза
+        user_name: 'github-actions[bot]'  # Имя пользователя для коммита
+        user_email: 'github-actions[bot]@users.noreply.github.com'  # Электронная почта для коммита
