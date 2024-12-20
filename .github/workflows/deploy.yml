@@ -2,20 +2,22 @@ name: Deploy to GitHub Pages
 
 on:
   release:
-    types: [published]  # Workflow срабатывает при публикации релиза
+    types: [published]  # Запуск при создании релиза
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
+    # Шаг 1: Проверяем репозиторий
     - name: Checkout repository
       uses: actions/checkout@v3
 
+    # Шаг 2: Публикуем на GitHub Pages
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}  # Токен для аутентификации
-        publish_dir: ./  # Публикуем весь проект
-        publish_branch: gh-pages  # Публикуем в ветку gh-pages
-        destination_dir: v${{ github.event.release.tag_name }}  # Создаем папку для версии релиза
+        github_token: ${{ secrets.GITHUB_TOKEN }}  # Используем токен для аутентификации
+        publish_dir: ./  # Указываем, что файлы будут собраны в корне проекта
+        publish_branch: gh-pages  # Деплой в ветку gh-pages
+        destination_dir: v${{ github.event.release.tag_name }}  # Публикуем в папку с тегом релиза
